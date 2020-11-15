@@ -11,11 +11,6 @@
 
 namespace PyScripting
 {
-struct ControllerModuleState
-{
-  API::GCManip* gc_manip;
-  API::WiiManip* wii_manip;
-};
 
 PyObject* GCPadStatusToPyDict(GCPadStatus status) {
   return Py_BuildValue("{s:O,s:O,s:O,s:O,s:O,s:O,s:O,s:O,s:O,s:O,s:O,s:O,"

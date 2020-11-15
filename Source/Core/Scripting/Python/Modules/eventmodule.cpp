@@ -22,14 +22,6 @@ namespace PyScripting
 // If you are looking for where the actual events are defined,
 // scroll to the bottom of this file.
 
-struct EventModuleState
-{
-  API::EventHub* event_hub;
-  std::optional<std::function<void()>> cleanup_listeners;
-  Py::Object callback;
-  std::deque<Py::Object> awaiting_coroutines;
-};
-
 // These template shenanigans are all required for PyEventFromMappingFunc
 // to be able to infer all of the mapping function signature's parts
 // from the mapping function only.

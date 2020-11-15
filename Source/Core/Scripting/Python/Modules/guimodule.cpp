@@ -12,11 +12,6 @@
 namespace PyScripting
 {
 
-struct GuiModuleState
-{
-  API::Gui* gui;
-};
-
 void add_osd_message(PyObject* self, const char* message, u32 duration_ms, u32 color_argb)
 {
   GuiModuleState* state = Py::GetState<GuiModuleState>(self);
@@ -36,28 +31,28 @@ PyObject* get_display_size(PyObject* self, PyObject* args)
   return Py_BuildValue("(ff)", size.x, size.y);
 }
 
-void draw_line(PyObject* self, float ax, float ay, float bx, float by, u32 color, float thickness = 1.0f)
+void draw_line(PyObject* self, float ax, float ay, float bx, float by, u32 color, float thickness)
 {
   GuiModuleState* state = Py::GetState<GuiModuleState>(self);
   state->gui->DrawLine({ax, ay}, {bx, by}, color, thickness);
 }
 
 void draw_rect(PyObject* self, float ax, float ay, float bx, float by, u32 color,
-               float rounding = 0.0f, float thickness = 1.0f)
+               float rounding, float thickness)
 {
   GuiModuleState* state = Py::GetState<GuiModuleState>(self);
   state->gui->DrawRect({ax, ay}, {bx, by}, color, rounding, thickness);
 }
 
 void draw_rect_filled(PyObject* self, float ax, float ay, float bx, float by, u32 color,
-                      float rounding = 0.0f)
+                      float rounding)
 {
   GuiModuleState* state = Py::GetState<GuiModuleState>(self);
   state->gui->DrawRectFilled({ax, ay}, {bx, by}, color, rounding);
 }
 
 void draw_quad(PyObject* self, float ax, float ay, float bx, float by, float cx, float cy, float dx,
-               float dy, u32 color, float thickness = 1.0f)
+               float dy, u32 color, float thickness)
 {
   GuiModuleState* state = Py::GetState<GuiModuleState>(self);
   state->gui->DrawQuad({ax, ay}, {bx, by}, {cx, cy}, {dx, dy}, color, thickness);
@@ -71,7 +66,7 @@ void draw_quad_filled(PyObject* self, float ax, float ay, float bx, float by, fl
 }
 
 void draw_triangle(PyObject* self, float ax, float ay, float bx, float by, float cx, float cy,
-                   u32 color, float thickness = 1.0f)
+                   u32 color, float thickness)
 {
   GuiModuleState* state = Py::GetState<GuiModuleState>(self);
   state->gui->DrawTriangle({ax, ay}, {bx, by}, {cx, cy}, color, thickness);
@@ -85,14 +80,14 @@ void draw_triangle_filled(PyObject* self, float ax, float ay, float bx, float by
 }
 
 void draw_circle(PyObject* self, float centerX, float centerY, float radius, u32 color,
-                 int num_segments = 12, float thickness = 1.0f)
+                 int num_segments, float thickness)
 {
   GuiModuleState* state = Py::GetState<GuiModuleState>(self);
   state->gui->DrawCircle({centerX, centerY}, radius, color, num_segments, thickness);
 }
 
 void draw_circle_filled(PyObject* self, float centerX, float centerY, float radius, u32 color,
-                        int num_segments = 12)
+                        int num_segments)
 {
   GuiModuleState* state = Py::GetState<GuiModuleState>(self);
   state->gui->DrawCircleFilled({centerX, centerY}, radius, color, num_segments);
@@ -156,7 +151,7 @@ PyObject* draw_convex_poly_filled(PyObject* self, PyObject* args)
 
 void draw_bezier_curve(PyObject* self, float pos0x, float pos0y, float cp0x, float cp0y, float cp1x,
                        float cp1y, float pos1x, float pos1y, u32 color, float thickness,
-                       int num_segments = 0)
+                       int num_segments)
 {
   GuiModuleState* state = Py::GetState<GuiModuleState>(self);
   state->gui->DrawBezierCurve({pos0x, pos0y}, {cp0x, cp0y}, {cp1x, cp1y}, {pos1x, pos1y}, color,

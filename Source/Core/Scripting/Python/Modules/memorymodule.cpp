@@ -13,12 +13,6 @@
 namespace PyScripting
 {
 
-struct MemoryModuleState
-{
-  // If Memory wasn't static, you'd store the memory instance here:
-  //API::Memory* memory;
-};
-
 template <auto TRead>
 static PyObject* Read(PyObject* self, PyObject* args)
 {

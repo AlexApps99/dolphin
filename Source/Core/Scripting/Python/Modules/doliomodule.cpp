@@ -12,11 +12,6 @@
 namespace PyScripting
 {
 
-struct DolioModuleState
-{
-  std::stringstream buffer;
-};
-
 void flush_stdout(PyObject* module)
 {
   DolioModuleState* state = Py::GetState<DolioModuleState>(module);

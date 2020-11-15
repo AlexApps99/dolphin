@@ -9,6 +9,10 @@
 namespace PyScripting
 {
 
+struct DolphinModuleState;
+
+void SetupDolphinModule(PyObject* module, DolphinModuleState* state);
+void CleanupDolphinModule(PyObject* module, DolphinModuleState* state);
 PyMODINIT_FUNC PyInit_dolphin();
 
 }  // namespace PyScripting

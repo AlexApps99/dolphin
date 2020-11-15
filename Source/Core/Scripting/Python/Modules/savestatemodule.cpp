@@ -11,12 +11,6 @@
 namespace PyScripting
 {
 
-struct SavestateModuleState
-{
-  // If State wasn't static, you'd store an instance here:
-  //API::SavestateManager* stateManager; // or however it would be called
-};
-
 PyObject* SaveToSlot(PyObject* self, PyObject* args)
 {
   // If State wasn't static, you'd get the state-manager instance from the module state:

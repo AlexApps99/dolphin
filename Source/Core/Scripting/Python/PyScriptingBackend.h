@@ -49,4 +49,8 @@ private:
   API::WiiManip& m_wii_manip;
 };
 
+void Init(std::filesystem::__cxx11::path);
+PyThreadState* InitMainPythonInterpreter();
+void ShutdownMainPythonInterpreter();
+
 }  // namespace PyScripting
