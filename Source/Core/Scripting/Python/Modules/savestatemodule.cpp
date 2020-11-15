@@ -19,7 +19,7 @@ PyObject* SaveToSlot(PyObject* self, PyObject* args)
   if (!slot_opt.has_value())
     return nullptr;
   u32 slot = std::get<0>(slot_opt.value());
-  if (slot < 0 || slot > 99)
+  if (slot > 99)
   {
     PyErr_SetString(PyExc_ValueError, "slot number must be between 0 and 99");
     return nullptr;
@@ -36,7 +36,7 @@ PyObject* LoadFromSlot(PyObject* self, PyObject* args)
   if (!slot_opt.has_value())
     return nullptr;
   u32 slot = std::get<0>(slot_opt.value());
-  if (slot < 0 || slot > 99)
+  if (slot > 99)
   {
     PyErr_SetString(PyExc_ValueError, "slot number must be between 0 and 99");
     return nullptr;
@@ -97,7 +97,7 @@ PyObject* LoadFromBytes(PyObject* self, PyObject* args)
 
   std::vector<u8> buffer(length, 0);
   u8* data = buffer.data();
-  u32 result = PyBytes_AsStringAndSize(pybytes, reinterpret_cast<char**>(&data), &length);
+  int result = PyBytes_AsStringAndSize(pybytes, reinterpret_cast<char**>(&data), &length);
   if (result == -1)
     return nullptr;
   // I don't understand where and why the buffer gets copied and why this is necessary...
